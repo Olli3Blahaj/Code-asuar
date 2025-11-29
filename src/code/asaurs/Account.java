@@ -14,25 +14,23 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Ocb19f  
  */
 public class Account extends javax.swing.JFrame {
-
+    LocalDate myObj = LocalDate.now(); // Create a date object
+    String date [] = myObj.toString().split("-");//Create a array of the data (yyyy/mm/dd)
     /**
      * Creates new form Home
      */
     public Account() {
         initComponents();
         setIconImage("0.png");
-        LocalDate myObj = LocalDate.now(); 
-        System.out.println("himfjdf");
-        String date [] = myObj.toString().split("-");
         for (int i = 0; i <=150; i++) {
             int Year = Integer.parseInt(date[0])-i;
-            System.out.println("9");
             Years.addItem(String.valueOf(Year));
         }
         
@@ -580,39 +578,34 @@ public class Account extends javax.swing.JFrame {
     }//GEN-LAST:event_ProActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-     LocalDate myObj = LocalDate.now(); // Create a date object
-     System.out.println(myObj); // Display the current date
+     
      String Date = Years.getSelectedItem()+"-"+Months.getSelectedItem()+"-"+Day.getSelectedItem();
      String Year = (String) Years.getSelectedItem();
-     String date [] = myObj.toString().split("-");
+    
      String username = Username.getText();
      String Pronoun = Pro.getText();
      String email = Email.getText();
      String Phonenum = Phone.getText();
-     System.out.println(date[0]+Years.getSelectedItem()+date[1]);
-     if (Func.Range((String) Years.getSelectedItem(),1900, Integer.parseInt(date[0]+1))){
-         if (Func.Range((String) Months.getSelectedItem(),0,13)||Func.Range((String) Day.getSelectedItem(),0,32)){
-            if(Func.Length(username, 0, 25)){
-                if (Func.Present(username)){
-                    System.out.println("pass");
-                }
+     //Present check
+     if(Func.Present(email)||Func.Present(username)||Func.Present(Pronoun)||Func.Present(Phonenum)){
+         JOptionPane.showMessageDialog(rootPane,"Please make sure that all field's", "Missing Item",JOptionPane.ERROR_MESSAGE);
+     }
+     //Length check
+     if(Func.Length(Phonenum, 11)){
+         JOptionPane.showMessageDialog(rootPane,"Please make sure that your phone number is vaild", "Incorrect Item",JOptionPane.ERROR_MESSAGE);
+     }
+     //Format check(Email)
+     if(Func.FormatEmail(email)){
+         JOptionPane.showMessageDialog(rootPane,"Please make sure that your email is vaild", "Incorrect Item",JOptionPane.ERROR_MESSAGE);
+     }
+     
                 
-}
-            if (Year.equals(date[0])){
-                System.out.println("pas");
-                if (Func.Range((String) Months.getSelectedItem(),0,Integer.parseInt(date[1]+1))){
-                    if (Func.Range((String) Day.getSelectedItem(),0,Integer.parseInt(date[2]+1))){
-                        System.out.println("pas");
-                    }
-                    System.out.println("pas");
-                }
-                    
-            }
-      
+
+         
             
          
-     }
-     }
+     
+     
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

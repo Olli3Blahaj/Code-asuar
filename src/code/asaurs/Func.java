@@ -10,17 +10,17 @@ import javax.swing.*;
  * @author Ocb19f
  */
 public class Func {
-   public static boolean Length(String val,int min,int max){
-        return val.length() > max&&val.length() < min;
+   public static boolean Length(String val,int max){
+        return val.length() != max;
     }
     public static boolean Present(String val){
-        return !val.isBlank();
+        return val.isBlank();
     }
     public static boolean Range (String val,int min,int max){
         return Integer.parseInt(val)>min && Integer.parseInt(val)<max;
     }
     public static boolean FormatEmail (String val){
-        return val.contains("@")&&val.endsWith(".com")||val.endsWith(".co.uk")||val.endsWith(".net");
+        return val.contains("@")||val.endsWith(".com")||val.endsWith(".co.uk")||val.endsWith(".net")||val.endsWith(".gov");
     }
     public static boolean lookup (String val){
         //In process

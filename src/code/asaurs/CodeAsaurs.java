@@ -16,6 +16,7 @@ public class CodeAsaurs {
     public static void main(String[] args) {
         Home forma =new Home ();
         forma.setVisible(true);
+        
     }
     
 }

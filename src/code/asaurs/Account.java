@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -329,6 +330,11 @@ public class Account extends javax.swing.JFrame {
         jLabel6.setText("Date of birth");
 
         Day.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        Day.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DayActionPerformed(evt);
+            }
+        });
 
         Months.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
@@ -589,28 +595,45 @@ public class Account extends javax.swing.JFrame {
      //Present check
      if(Func.Present(email)||Func.Present(username)||Func.Present(Pronoun)||Func.Present(Phonenum)){
          JOptionPane.showMessageDialog(rootPane,"Please make sure that all field's", "Missing Item",JOptionPane.ERROR_MESSAGE);
-     }
+
+     }    
+     else{
+                  
      //Length check
      if(Func.Length(Phonenum, 11)){
          JOptionPane.showMessageDialog(rootPane,"Please make sure that your phone number is vaild", "Incorrect Item",JOptionPane.ERROR_MESSAGE);
      }
-     //Format check(Email)
-     if(Func.FormatEmail(email)){
+     else{
+         //Format check(Email)
+     if(!Func.FormatEmail(email)){
          JOptionPane.showMessageDialog(rootPane,"Please make sure that your email is vaild", "Incorrect Item",JOptionPane.ERROR_MESSAGE);
      }
-     
-                
-
-         
-            
-         
-     
-     
+     else{
+         //Format check(Pronoun)
+     if(!Pronoun.contains("/")){
+        JOptionPane.showMessageDialog(rootPane,"Please make sure that your Pronuoun contains / like (she/her or he/him)", "Incorrect Item",JOptionPane.ERROR_MESSAGE); 
+     //Range check
+     }
+     else{
+         if (!Func.Range(email, 9, 61)||!Func.Range(Pronoun, 0, 12)||!Func.Range(username, 3, 51)){
+        JOptionPane.showMessageDialog(rootPane,"Please make sure that your field are all the correct", "Incorrect Item",JOptionPane.ERROR_MESSAGE); 
+     }
+         else {
+             Func.FileWriter();
+         }
+     }
+     }
+     }
+     }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void DayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DayActionPerformed
 
     /**
      * @param args the command line arguments

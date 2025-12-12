@@ -4,8 +4,11 @@
  */
 package code.asaurs;
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -49,29 +52,9 @@ public class Func {
             catch (NumberFormatException e) {
             return false;
         }
-    }
-    public static void FileWriter(String val){
-       FileWriter fw = null;
-       try {
-           fw = new FileWriter("User.txt",true);
-           BufferedWriter bw =new BufferedWriter(fw);
-           bw.write(val);
-           bw.newLine();
-           bw.close();
-       } catch (IOException ex) {
-           System.getLogger(Func.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-       } finally {
-           try {
-               fw.close();
-           } catch (IOException ex) {
-               System.getLogger(Func.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-           }
-       }
-    }
-    private static final String FILE_PATH = "User.text";
-
+    }    
     public static int getNewUniqueId() {
-        File file = new File(FILE_PATH);
+        File file = new File("User.txt");
 
         // If file doesn't exist, ID is 1
         if (!file.exists()) {
@@ -91,7 +74,7 @@ public class Func {
     public static int addNewEntry(String data) {
         int newId = getNewUniqueId();
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("User.txt", true))) {
             writer.write(newId + ": " + data);
             writer.newLine();
         } catch (IOException e) {
@@ -100,8 +83,34 @@ public class Func {
 
         return newId;
     }
+    public static int AddPage(String name,String tags,String context){
+        // save the file loctians
+         try (BufferedWriter writer = new BufferedWriter(new FileWriter("Code-asaursIndex.txt", true))) {
+            writer.write(name+"/"+"0"+"unrated"+"/"+tags);
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // to make the the file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(name+".txt", true))) {
+            writer.write(name+"/"+"0"+"unrated"+"/"+tags+"*");
+            writer.newLine();
+            writer.write(context);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       return 0;
+        
+    }
+    public static int Searchofpages(String tags){
+       
+       return 0;
+        
+    }
 }
-
+   
   
 
 

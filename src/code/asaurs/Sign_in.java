@@ -6,6 +6,7 @@ package code.asaurs;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.time.LocalDate;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -14,6 +15,8 @@ import javax.swing.JOptionPane;
  * @author Ocb19f  
  */
 public class Sign_in extends javax.swing.JFrame {
+    LocalDate myObj = LocalDate.now(); // Create a date object
+    String date [] = myObj.toString().split("-");//Create a arra
 
     /**
      * Creates new form Home
@@ -22,6 +25,10 @@ public class Sign_in extends javax.swing.JFrame {
         initComponents();
         setIconImage("0.png");
         System.out.println("hi");
+        for (int i = 0; i <=150; i++) {
+            int Year = Integer.parseInt(date[0])-i;
+            Years.addItem(String.valueOf(Year));
+        }
     }
 
     /**
@@ -421,9 +428,11 @@ public class Sign_in extends javax.swing.JFrame {
      else{
          if (!Func.Range(email, 9, 61)||!Func.Range(Pronoun, 0, 12)||!Func.Range(username, 3, 51)){
         JOptionPane.showMessageDialog(rootPane,"Please make sure that your field are all the correct", "Incorrect Item",JOptionPane.ERROR_MESSAGE); 
-     }
+         }
          else {
-            Func.addNewEntry();
+            Func.addNewEntry(username);
+             System.err.println("9");
+         
          }
      }
      }

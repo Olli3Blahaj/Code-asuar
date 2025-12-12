@@ -9,11 +9,12 @@ package code.asaurs;
  * @author Ocb19f
  */
 public class CodeAsaurs {
-
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Func.AddPage("Test 1", "#test", "hi");
         Home forma =new Home ();
         forma.setVisible(true);
         
